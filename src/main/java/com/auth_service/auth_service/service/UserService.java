@@ -13,8 +13,12 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    private final UserRepo userRepo;
+
     @Autowired
-    private UserRepo userRepo;
+    public UserService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
     public UserDTO addUserToRepo(UserDTO userDTO) {
         User savedUser = userRepo.save(UserMapper.MAPPER.toUser(userDTO));
